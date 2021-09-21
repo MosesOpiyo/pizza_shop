@@ -1,4 +1,6 @@
 from app import db
+from app import ma
+
 
 class User(db.Model):
     """This will define all behaviours of the user
@@ -18,6 +20,7 @@ class User(db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
 
 class Roles(db.Model):
     """This defines the users roles

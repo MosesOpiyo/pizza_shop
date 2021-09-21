@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint,jsonify
 from flask_restful import Api, Resource
 
 main = Blueprint('main',__name__,url_prefix='/main')
@@ -14,4 +14,3 @@ api.add_resource(HelloWorld,'/')
 from.views.views import ViewUser
 
 api.add_resource(ViewUser,"/user")
-
