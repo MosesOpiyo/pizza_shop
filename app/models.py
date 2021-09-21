@@ -37,3 +37,14 @@ class Pizza(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name= db.Column(db.String(255))
     base_price = db.Column(db.Integer)
+
+class Size(db.Model):
+    """This will define the aspects of size
+
+    Args:
+        db ([type]): [description]
+    """
+    __tablename__ = 'size'
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
+    price = db.Column(db.Integer)
