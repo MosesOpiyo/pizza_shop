@@ -1,8 +1,17 @@
-from flask import Blueprint, blueprints
-from flask_restful import Api
+from flask import Blueprint
+from flask_restful import Api, Resource
 
-main = blueprints('main',__name__,url_prefix='/main')
+main = Blueprint('main',__name__,url_prefix='/main')
 api = Api(main,catch_all_404s=True)
 
-from .models import models
-from.views import views 
+class HelloWorld(Resource):
+    def get (self):
+        return {'hello':'world'}
+
+api.add_resource(HelloWorld,'/')
+
+
+from.views.views import ViewUser
+
+api.add_resource(ViewUser,"/user")
+

@@ -10,9 +10,11 @@ class User(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
+    email = db.Column(db.String(255))
+    password = db.Column(db.String(255))
     location = db.Column(db.String(255))
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    order = db.relationship('Orders',backref = 'user', lazy="dynamic")
+    order = db.relationship('Orders',backref = 'users', lazy="dynamic")
 
     def __repr__(self):
         return f'User {self.username}'
@@ -38,7 +40,7 @@ class Pizza(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name= db.Column(db.String(255))
     base_price = db.Column(db.Integer)
-    order = db.relationship('Orders',backref = 'pizzas', lazy="dynamic")
+    order = db.relationship('Orders',backref = 'pizza', lazy="dynamic")
 
 class Size(db.Model):
     """This will define the aspects of size
@@ -50,7 +52,7 @@ class Size(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
     price = db.Column(db.Integer)
-    order = db.relationship('Orders',backref = 'sizes', lazy="dynamic")
+    order = db.relationship('Orders',backref = 'size', lazy="dynamic")
 
 class Toppings(db.Model):
     """This will define the topping aspects
@@ -73,8 +75,8 @@ class Orders(db.Model):
     __tablename__ = 'orders'
     id = db.Column(db.Integer,primary_key = True)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    role_id = db.Column(db.Integer,db.ForeignKey('pizza.id'))
-    role_id = db.Column(db.Integer,db.ForeignKey('size.id'))
-    role_id = db.Column(db.Integer,db.ForeignKey('toppings.id'))
+    pizza_id = db.Column(db.Integer,db.ForeignKey('pizza.id'))
+    size_id = db.Column(db.Integer,db.ForeignKey('size.id'))
+    topping_id = db.Column(db.Integer,db.ForeignKey('toppings.id'))
     price = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
