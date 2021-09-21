@@ -24,7 +24,7 @@ class User(db.Model):
 class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = User 
-        load_instance = True
+        # load_instance = True
 
 
 class Roles(db.Model):
@@ -48,7 +48,6 @@ class Pizza(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name= db.Column(db.String(255))
     base_price = db.Column(db.Integer)
-    order = db.relationship('Orders',backref = 'pizza', lazy="dynamic")
 
 class Size(db.Model):
     """This will define the aspects of size
@@ -60,7 +59,6 @@ class Size(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
     price = db.Column(db.Integer)
-    order = db.relationship('Orders',backref = 'size', lazy="dynamic")
 
 class Toppings(db.Model):
     """This will define the topping aspects
@@ -72,7 +70,6 @@ class Toppings(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
     price = db.Column(db.Integer)
-    order = db.relationship('Orders',backref = 'toppings', lazy="dynamic")
 
 class Orders(db.Model):
     """This is 
