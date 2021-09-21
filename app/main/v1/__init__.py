@@ -11,6 +11,6 @@ class HelloWorld(Resource):
 api.add_resource(HelloWorld,'/')
 
 
-from.views.views import ViewUser
+from app.main.v1.views.views import ViewUser
 
 api.add_resource(ViewUser,"/user")

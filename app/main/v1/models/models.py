@@ -1,5 +1,6 @@
 from app import db
 from app import ma
+from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
 
 class User(db.Model):
@@ -16,10 +17,14 @@ class User(db.Model):
     password = db.Column(db.String(255))
     location = db.Column(db.String(255))
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    order = db.relationship('Orders',backref = 'users', lazy="dynamic")
 
     def __repr__(self):
         return f'User {self.username}'
+
+class UserSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = User 
+        load_instance = True
 
 
 class Roles(db.Model):
