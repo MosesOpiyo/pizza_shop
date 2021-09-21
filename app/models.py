@@ -48,3 +48,14 @@ class Size(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
     price = db.Column(db.Integer)
+
+class Toppings(db.Model):
+    """This will define the topping aspects
+
+    Args:
+        db ([type]): [description]
+    """
+    __tablename__ = 'toppings'
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
+    price = db.Column(db.Integer)
